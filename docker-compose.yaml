@@ -1,0 +1,15 @@
+version: "3"
+services:
+  rundeck:
+    image: rundeck/rundeck:4.6.0
+    ports:
+      - 4440:4440
+    environment:
+      RUNDECK_GRAILS_URL: http://localhost
+      RUNDECK_SERVER_FORWARDED: "true"
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+    - 80:80
